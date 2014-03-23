@@ -1,0 +1,26 @@
+{
+  "name": "redic.js",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "hiredis": "^0.1.16"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cyx/redic.js"
+  },
+  "keywords": [
+    "redis"
+  ],
+  "author": "Cyril David",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cyx/redic.js/issues"
+  },
+  "homepage": "https://github.com/cyx/redic.js"
+}

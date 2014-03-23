@@ -18,9 +18,7 @@ function connect() {
         sock.write.apply(sock, args);
     }
 
-    var redic = Object.create({ call: call });
-
-    return redic;
+    return Object.create({ call: call });
 }
 
 module.exports = {

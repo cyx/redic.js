@@ -6,18 +6,18 @@ test('basic usage', function(t) {
 
     var client = redic.connect(10001, 'localhost');
 
-    client.call(['AUTH', 'test'], function(err, res) {
+    client.call('AUTH', 'test', function(err, res) {
         t.assert(err === null, 'AUTH: OK');
 
-        client.call(['SET', 'foo', 'bar'], function(err, res) {
+        client.call('SET', 'foo', 'bar', function(err, res) {
             t.assert(res === 'OK', 'SET: OK');
 
-            client.call(['GET', 'foo'], function(err, res) {
+            client.call('GET', 'foo', function(err, res) {
                 t.assert(res === 'bar', 'GET: OK');
 
                 // Let's use the raw QUIT style here
                 // to try it out.
-                client.call(['QUIT']);
+                client.call('QUIT');
             });
         });
     });
@@ -32,14 +32,14 @@ test('maxlisteners', function(t) {
     // If you change it to 1001 you'll get an error.
     var client = redic.connect(10001, 'localhost', { maxListeners: 1002 });
 
-    client.call(['AUTH', 'test'], function(err, res) {
+    client.call('AUTH', 'test', function(err, res) {
         t.assert(err === null, 'AUTH: OK');
 
         var total = 0;
         var success = 0;
 
         for (var i = 0; i < 1000; i++) {
-            client.call(['PING'], function(err) {
+            client.call('PING', function(err) {
                 if (err === null) success++;
 
                 total++;

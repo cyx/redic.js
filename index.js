@@ -1,5 +1,6 @@
 var hiredis = require('hiredis');
 var reader = new hiredis.Reader();
+var slice = Array.prototype.slice;
 
 // Usage:
 //
@@ -20,7 +21,7 @@ function connect(port, host, options) {
         sock.setMaxListeners(options.maxListeners);
     }
 
-    function call(args, fn) {
+    function write(args, fn) {
         fn = fn || function() {}
 
         sock.once('reply', function(data) {
@@ -34,8 +35,20 @@ function connect(port, host, options) {
         sock.write.apply(sock, args);
     }
 
+    // Usage: client.call('GET', 'foo', callback);
+    function call() {
+        var args = slice.call(arguments);
+        var cb = null;
+
+        if (typeof args[args.length - 1] === 'function') {
+            cb = args.pop();
+        }
+
+        write(args, cb);
+    }
+
     function quit() {
-        call(['QUIT']);
+        call('QUIT');
     }
 
     return Object.create({ call: call, quit: quit });

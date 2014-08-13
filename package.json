@@ -1,12 +1,14 @@
 {
-  "name": "redic.js",
-  "version": "0.0.1",
-  "description": "",
+  "name": "redic",
+  "version": "0.0.2",
+  "description": "redic inspired node redis client",
   "main": "index.js",
   "dependencies": {
     "hiredis": "^0.1.16"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tape": "^2.14.0"
+  },
   "scripts": {
     "test": "node test.js"
   },
